@@ -23,7 +23,7 @@ const CountryInfo = (props) => {
         width: "100%",
         marginTop: 0,
         padding: 20,
-        paddingTop: 0,
+        paddingTop: 0
       },
     },
   }));
