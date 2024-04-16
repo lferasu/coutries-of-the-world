@@ -18,7 +18,6 @@ const SelectButton = ({ children, selected, onClick }) => {
         color: "black",
       },
       width: "22%",
-      //   margin: 5,
     },
   });
 

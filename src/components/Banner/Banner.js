@@ -1,6 +1,5 @@
 import { Container, makeStyles, Typography } from "@material-ui/core";
 import Carousel from "./Carousel";
-import { useEffect } from "react";
 
 const useStyles = makeStyles((theme) => ({
   banner: {
@@ -27,12 +26,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Banner({ byContinent }) {
+function Banner() {
   const classes = useStyles();
-  useEffect(()=>{
-    console.log()
-  }, [])
-
   return (
     <div className={classes.banner}>
       <Container className={classes.bannerContent}>
@@ -58,7 +53,7 @@ function Banner({ byContinent }) {
             Based on restcountries api
           </Typography>
         </div>
-        <Carousel countries={byContinent??[]} />
+        <Carousel />
       </Container>
     </div>
   );

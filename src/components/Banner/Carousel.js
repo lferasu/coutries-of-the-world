@@ -1,12 +1,14 @@
 import { makeStyles } from "@material-ui/core";
 import AliceCarousel from "react-alice-carousel";
 import { Link } from "react-router-dom";
-
+import { worldCountries } from '../../store/Countries'
+import { continentsStore } from "../../store/ContinentStore";
+import { observer } from "mobx-react-lite";
 
 function numberWithCommas(x) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
-const Carousel = ({ countries }) => {
+const Carousel = () => {
   const useStyles = makeStyles((theme) => ({
     carousel: {
       height: "50%",
@@ -25,14 +27,17 @@ const Carousel = ({ countries }) => {
 
   const classes = useStyles();
 
-  const items = countries?.map((country) => {
-    // let profit = coin?.price_change_percentage_24h >= 0;
-
+  const items = worldCountries.countriesByContinent[
+    continentsStore.selectedContinent
+  ]?.map((country) => {
+   
     return (
-      // <Link className={classes.carouselItem} to={`/coins/${coin.id}`}>
-      <Link className={classes.carouselItem}>
+      <Link
+        className={classes.carouselItem}
+        to={`/countries/${country.name.toLocaleLowerCase()}`}
+      >
         <img
-          src={country?.flags.svg}
+          src={country?.flag}
           alt={country.name}
           height="80"
           style={{ marginBottom: 10 }}
@@ -42,15 +47,15 @@ const Carousel = ({ countries }) => {
           &nbsp;
           <span
             style={{
-              color: "rgb(14, 203, 129)" ,
+              color: "rgb(14, 203, 129)",
               fontWeight: 500,
             }}
           >
-            {country?.capital[0]}
+            {country?.capital}
           </span>
         </span>
         <span style={{ fontSize: 22, fontWeight: 500 }}>
-           {numberWithCommas(country?.population)}
+          {numberWithCommas(country?.population)}
         </span>
       </Link>
     );
@@ -82,4 +87,4 @@ const Carousel = ({ countries }) => {
   );
 };
 
-export default Carousel;
+export default observer(Carousel);

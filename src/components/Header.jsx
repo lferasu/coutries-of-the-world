@@ -12,7 +12,9 @@ import {
   ThemeProvider,
 } from "@material-ui/core/styles";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { continentsStore } from "../store/ContinentStore";
+import { observer } from "mobx-react-lite";
+import React from "react";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -33,38 +35,10 @@ const darkTheme = createTheme({
   },
 });
 
-function Header({ region, setRegion }) {
+  const Header = observer(() => {
   const classes = useStyles();
-
   const history = useNavigate();
-  const continents = [
-  //   {
-  //     label : Africa,
-  //     value : Africa
-  //   },
-  //   {
-  //     label : Europe,
-  //     value : Europe
-  //   },
-  //   {
-  //     label : Africa,
-  //     value : Africa
-  //   },
-  //   {
-  //     label : Asia,
-  //     value : Africa
-  //   },
-  //   {
-  //     label : North America,
-  //     value : Africa
-  //   },
-  //   {
-  //     label : Africa,
-  //     value : Africa
-  //   },
-    "Africa", "Europe", "Asia", "North America" ,"South America", "Oceania"
-  ];
-
+  
   return (
     <ThemeProvider theme={darkTheme}>
       <AppBar color="transparent" position="static">
@@ -81,11 +55,13 @@ function Header({ region, setRegion }) {
               variant="outlined"
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={region}
+              value={continentsStore.selectedContinent}
               style={{ width: 400, height: 40, marginLeft: 15 }}
-              onChange={(e) => setRegion(e.target.value)}
+              onChange={(e) =>
+                continentsStore.updateSelectedContinent(e.target.value)
+              }
             >
-              {continents.map((continent, index) => {
+              {continentsStore.continents.map((continent, index) => {
                 return (
                   <MenuItem value={continent} key={index}>
                     {continent}
@@ -98,6 +74,6 @@ function Header({ region, setRegion }) {
       </AppBar>
     </ThemeProvider>
   );
-}
+});
 
-export default Header;
+ export default Header;

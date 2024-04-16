@@ -1,15 +1,8 @@
-// export const CoinList = (currency) =>
-//   `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=100&page=1&sparkline=false`;
 
-// export const SingleCoin = (id) =>
-//   `https://api.coingecko.com/api/v3/coins/${id}`;
-
-// export const HistoricalChart = (id, days = 365, currency) =>
-//   `https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=${currency}&days=${days}`;
-
-// export const TrendingCoins = (currency) =>
-//   `https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=gecko_desc&per_page=10&page=1&sparkline=false&price_change_percentage=24h`;
+export const singleCountryPopulation = () => {
+  return `https://countriesnow.space/api/v0.1/countries/population`;
+};
 
 export const getCountriesApi = () => {
-  return `https://restcountries.com/v3.1/all?fields=name,cca3,capital,currencies,region,languages,maps,flags,population,continents`
+  return `https://restcountries.com/v3.1/all?fields=name,cca3,capital,currencies,region,languages,maps,flags,population,continents`;
 };

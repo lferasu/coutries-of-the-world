@@ -2,9 +2,8 @@ import { makeStyles } from "@material-ui/core";
 import Homepage from "./Pages/HomePage";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-// import CoinPage from "./Pages/CoinPage";
 import Header from "./components/Header";
-import { useState } from "react";
+import CountryPage from "./Pages/CountryPage";
 
 const useStyles = makeStyles(() => ({
   App: {
@@ -16,19 +15,15 @@ const useStyles = makeStyles(() => ({
 
 function App() {
   const classes = useStyles();
-  const [region, setRegion] = useState("Africa");
-  const getRegion = () => {
-    return region;
-  };
 
   return (
     <BrowserRouter>
       <div className={classes.App}>
-      <Header region={region} setRegion={setRegion} />
-        <Routes> 
-          <Route path="/" element={<Homepage region={region} />} />
+        <Header />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/countries/:id" element={<CountryPage />} exact />
         </Routes>
-        {/* <Route path="/coins/:id" component={CoinPage} exact /> */}
       </div>
     </BrowserRouter>
   );
